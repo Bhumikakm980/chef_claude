@@ -1,7 +1,7 @@
 export default Additem;
 
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Listitem from "./Listitem";
 import Finalresponse from "./Finalresponse";
 
@@ -12,6 +12,14 @@ function Additem(){
 
     const[item,addItem]=useState([]);
     const[response,setResponse]=useState(false);
+    const refScrolling=useRef(null);
+
+    useEffect(()=>{
+
+        if(response && refScrolling.current){
+            refScrolling.current.scrollIntoView();
+        }
+    },[response])
 
 // function adding(){
     
@@ -75,7 +83,7 @@ async function getResponse(e){
                         }
 
                         {item.length>=4&&
-                        <div className="readyfor">
+                        <div ref={refScrolling} className="readyfor">
                             <div className="recipe-container">
                                 <div>
                             <h3>Ready for recipe?</h3>
