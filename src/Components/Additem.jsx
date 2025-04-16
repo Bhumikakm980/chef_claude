@@ -17,7 +17,7 @@ function Additem(){
     useEffect(()=>{
 
         if(response && refScrolling.current){
-            refScrolling.current.scrollIntoView();
+            refScrolling.current.scrollIntoView({behaviour:"smooth"});
         }
     },[response])
 
